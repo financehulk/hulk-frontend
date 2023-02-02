@@ -36,7 +36,6 @@ BigNumber.config({
 })
 
 const App: React.FC = () => {
-
   usePollBlockNumber()
   usePollCoreFarmData()
   useUserAgent()
@@ -54,19 +53,26 @@ const App: React.FC = () => {
 
   // useFetchPublicData()
 
-  const saveAffiliateHandler = useCallback((search: string) => {
-    if (search !== '') {
-      const searchSplit = search.split('=')
-      if (searchSplit.length > 1) {
-        const affiliateAddress = searchSplit[1]
-        if (isAddress(affiliateAddress) && affiliateAddress !== account) {
-          onSaveAffiliateAddress(affiliateAddress)
+  const saveAffiliateHandler = useCallback(
+    (search: string) => {
+      console.log(search)
+      if (search !== '') {
+        const searchSplit = search.split('=')
+        if (searchSplit.length > 1) {
+          const affiliateAddress = searchSplit[1]
+
+          if (isAddress(affiliateAddress) && affiliateAddress !== account) {
+            console.log(affiliateAddress)
+            onSaveAffiliateAddress(affiliateAddress)
+          }
         }
       }
-    }
-  }, [account, onSaveAffiliateAddress])
+    },
+    [account, onSaveAffiliateAddress],
+  )
 
   useEffect(() => {
+    // console.log(window.location.search)
     if (window.location.search) {
       saveAffiliateHandler(window.location.search)
     }
@@ -84,19 +90,19 @@ const App: React.FC = () => {
         <Menu>
           <Suspense fallback={<PageLoader />}>
             <Switch>
-              <Route path='/' exact>
+              <Route path="/" exact>
                 <Home />
               </Route>
               {/* <Route path='/pre-sale' exact> */}
               {/*  <PreSale /> */}
               {/* </Route> */}
-              <Route path='/farms'>
+              <Route path="/farms">
                 <Farms />
               </Route>
-              <Route path='/pools'>
+              <Route path="/pools">
                 <Pools />
               </Route>
-              <Route path='/referral'>
+              <Route path="/referral">
                 <Referral />
               </Route>
               {/* 404 */}

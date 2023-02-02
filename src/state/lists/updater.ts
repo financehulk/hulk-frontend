@@ -1,7 +1,7 @@
 import { getVersionUpgrade, VersionUpgrade } from '@uniswap/token-lists'
 import { useCallback, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { useAllLists , useActiveListUrls } from './hooks'
+import { useAllLists, useActiveListUrls } from './hooks'
 import { UNSUPPORTED_LIST_URLS } from '../../config/constants/lists'
 import useWeb3Provider from '../../hooks/useActiveWeb3React'
 import useFetchListCallback from '../../hooks/useFetchListCallback'
@@ -9,7 +9,6 @@ import useInterval from '../../hooks/useInterval'
 import useIsWindowVisible from '../../hooks/useIsWindowVisible'
 import { AppDispatch } from '../index'
 import { acceptListUpdate } from './actions'
-
 
 export default function Updater(): null {
   const { library } = useWeb3Provider()

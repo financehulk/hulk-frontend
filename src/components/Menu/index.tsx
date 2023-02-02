@@ -18,25 +18,23 @@ const Menu = (props: any) => {
   const TranslateString = useI18n()
   // console.log(languageList)
 
-
-
   const config: MenuEntry[] = [
     {
-      label: TranslateString("Home","Home"),
-      icon: "HomeIcon",
-      href: "/",
+      label: TranslateString('Home', 'Home'),
+      icon: 'HomeIcon',
+      href: '/',
     },
     {
-      label: TranslateString("Trade","Trade"),
-      icon: "TradeIcon",
+      label: TranslateString('Trade', 'Trade'),
+      icon: 'TradeIcon',
       items: [
         {
-          label: TranslateString("Exchange","Exchange"),
-          href: "https://dex.hulkfiinance.com",
+          label: TranslateString('Exchange', 'Exchange'),
+          href: 'https://dex.hulkfiinance.com',
         },
         {
-          label: TranslateString("Liquidity","Liquidity"),
-          href: "https://dex.hulkfiinance.com/#/pool",
+          label: TranslateString('Liquidity', 'Liquidity'),
+          href: 'https://dex.hulkfiinance.com/#/pool',
         },
       ],
     },
@@ -46,19 +44,19 @@ const Menu = (props: any) => {
     //   href: "/pre-sale",
     // },
     {
-      label: TranslateString("Farms","Farms"),
-      icon: "FarmIcon",
-      href: "/farms",
+      label: TranslateString('Farms', 'Farms'),
+      icon: 'FarmIcon',
+      href: '/farms',
     },
     {
-      label: TranslateString("Pools","Pools"),
-      icon: "PoolIcon",
-      href: "/pools",
+      label: TranslateString('Pools', 'Pools'),
+      icon: 'PoolIcon',
+      href: '/pools',
     },
     {
-      label: TranslateString("Referrals","Referrals"),
-      icon: "ReferralIcon",
-      href: "/referral",
+      label: TranslateString('Referrals', 'Referrals'),
+      icon: 'ReferralIcon',
+      href: '/referral',
     },
     // {
     //   label: "Audits",
@@ -66,54 +64,54 @@ const Menu = (props: any) => {
     //   href: "/audits",
     // },
     {
-      label: TranslateString("Listings","Listings"),
-      icon: "ListingIcon",
+      label: TranslateString('Listings', 'Listings'),
+      icon: 'ListingIcon',
       items: [
         {
-          label: "BscScan",
-          href: "/",
+          label: 'BscScan',
+          href: '/',
         },
         {
-          label: "DappRadar",
-          href: "/",
+          label: 'DappRadar',
+          href: '/',
         },
         {
-          label: "CoinGecko",
-          href: "/",
+          label: 'CoinGecko',
+          href: '/',
         },
         {
-          label: "CoinMarketCap",
-          href: "/",
+          label: 'CoinMarketCap',
+          href: '/',
         },
         {
-          label: "LiveCoinWatch",
-          href: "/",
+          label: 'LiveCoinWatch',
+          href: '/',
         },
         {
-          label: "Vfat",
-          href: "/",
+          label: 'Vfat',
+          href: '/',
         },
       ],
     },
     {
-      label: TranslateString("More","More"),
-      icon: "MoreIcon",
+      label: TranslateString('More', 'More'),
+      icon: 'MoreIcon',
       items: [
         // {
         //   label: "Voting",
         //   href: "https://voting.hulkfiinance.com",
         // },
         {
-          label: "Github",
-          href: "https://github.com/hulkfinance",
+          label: 'Github',
+          href: 'https://github.com/financehulk',
         },
         {
-          label: "Docs",
-          href: "https://financehulk.gitbook.io/hulkfinance/",
+          label: 'Docs',
+          href: 'https://financehulk.gitbook.io/hulkfinance/',
         },
         {
-          label: "Blog",
-          href: "https://medium.com/@hulk-finance",
+          label: 'Blog',
+          href: 'https://medium.com/@hulk-finance',
         },
       ],
     },

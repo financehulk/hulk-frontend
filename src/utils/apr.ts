@@ -42,7 +42,6 @@ export const getFarmApr = (
   const yearlyHulkRewardAllocation = poolWeight
     ? poolWeight.times(BLOCKS_PER_YEAR * regularHulkPerBlock)
     : new BigNumber(NaN)
-  console.log(yearlyHulkRewardAllocation.times(umPriceUsd).toNumber(), poolLiquidityUsd.toNumber())
   const hulkRewardsApr = yearlyHulkRewardAllocation.times(umPriceUsd).div(poolLiquidityUsd).times(100)
   let hulkRewardsAprAsNumber = 0
   if (!hulkRewardsApr.isNaN() && hulkRewardsApr.isFinite()) {

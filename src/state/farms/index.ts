@@ -16,7 +16,8 @@ import {
   fetchFarmUserEarnings,
   fetchFarmUserAllowances,
   fetchFarmUserTokenBalances,
-  fetchFarmUserStakedBalances, fetchFarmUserCanHarvest,
+  fetchFarmUserStakedBalances,
+  fetchFarmUserCanHarvest,
 } from './fetchFarmUser'
 import { SerializedFarmsState, SerializedFarm } from '../types'
 import { fetchMasterChefFarmPoolLength, fetchMasterChefRegularHulkPerBlock } from './fetchMasterChefData'
@@ -30,7 +31,7 @@ const noAccountFarmConfig = farmsConfig.map((farm: any) => ({
     stakedBalance: '0',
     earnings: '0',
     canHarvest: false,
-    nextHarvestUntil: undefined
+    nextHarvestUntil: undefined,
   },
 }))
 
@@ -44,16 +45,21 @@ const initialState: SerializedFarmsState = {
 export const nonArchivedFarms = farmsConfig.filter(({ pid }: any) => !isArchivedPid(pid))
 
 // Async thunks
-export const fetchFarmsPublicDataAsync = createAsyncThunk<[SerializedFarm[], number, number], number[], { state: AppState }>(
+export const fetchFarmsPublicDataAsync = createAsyncThunk<
+  [SerializedFarm[], number, number],
+  number[],
+  { state: AppState }
+>(
   'farms/fetchFarmsPublicDataAsync',
   async (pids) => {
+    const allPids = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     const poolLength = await fetchMasterChefFarmPoolLength()
     const regularHulkPerBlock = await fetchMasterChefRegularHulkPerBlock()
-    const farmsToFetch = farmsConfig.filter((farmConfig: any) => pids.includes(farmConfig.pid))
+    const farmsToFetch = farmsConfig.filter((farmConfig: any) => allPids.includes(farmConfig.pid))
     const farmsCanFetch = farmsToFetch.filter((f: any) => poolLength.gt(f.pid))
 
     // Add price helper farms
-    const farmsWithPriceHelpers = farmsCanFetch.concat([])
+    const farmsWithPriceHelpers = farmsToFetch.concat([])
 
     const farms = await fetchFarms(farmsWithPriceHelpers)
 
@@ -83,8 +89,8 @@ interface FarmUserDataResponse {
   tokenBalance: string
   stakedBalance: string
   earnings: string
-  canHarvest: boolean,
-  nextHarvestUntil?: number,
+  canHarvest: boolean
+  nextHarvestUntil?: number
 }
 
 export const fetchFarmUserDataAsync = createAsyncThunk<
@@ -161,7 +167,7 @@ export const farmsSlice = createSlice({
             stakedBalance: '0',
             earnings: '0',
             canHarvest: false,
-            nextHarvestUntil: undefined
+            nextHarvestUntil: undefined,
           },
         }
       })

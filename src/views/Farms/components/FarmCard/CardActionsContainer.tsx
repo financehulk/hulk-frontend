@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useMemo, useState, useCallback, useEffect, useContext } from 'react'
 import BigNumber from 'bignumber.js'
@@ -22,6 +23,7 @@ import { getAddress, getHULKTokenAddress } from '../../../../utils/addressHelper
 import { getBscScanLink } from '../../../../utils'
 import { ToastContext } from '../../../../contexts/ToastContext'
 import { fetchFarmUserDataAsync } from '../../../../state/farms'
+import { usePoolLength } from '../../../../hooks/useMasterChef'
 
 const Action = styled.div`
   margin-top: 8px;
@@ -60,6 +62,8 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account }) => {
   const dispatch = useAppDispatch()
 
   const lpContract = useLPContract(lpAddress)
+
+  const length = usePoolLength()
 
   useEffect(() => {
     if (lpContract && lpAddress !== getHULKTokenAddress()) {
@@ -114,6 +118,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account }) => {
     return { stakedBalance: BIG_ZERO, earnings: BIG_ZERO, tokenBalance: BIG_ZERO }
   }, [farmUser])
 
+  // console.log(farm, farmUser, earnings.toNumber())
   return (
     <Action>
       <Flex>
@@ -133,19 +138,25 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account }) => {
         // eslint-disable-next-line no-nested-ternary
         !account ? (
           <UnlockButton mt="16px" fullWidth />
-        ) : !isApproved ? (
-          <Button mt="16px" fullWidth disabled={pendingTx} onClick={handleApprove}>
-            {TranslateString('Approve Contract', 'Approve Contract')}
-          </Button>
+        ) : length?.gt(pid) ? (
+          !isApproved ? (
+            <Button mt="16px" fullWidth disabled={pendingTx} onClick={handleApprove}>
+              {TranslateString('Approve Contract', 'Approve Contract')}
+            </Button>
+          ) : (
+            <StakeAction
+              farm={farm}
+              stakedBalance={stakedBalance}
+              tokenBalance={tokenBalance}
+              tokenName={lpLabel}
+              pid={pid}
+              depositFeeBP={farm.depositFeeBP}
+            />
+          )
         ) : (
-          <StakeAction
-            farm={farm}
-            stakedBalance={stakedBalance}
-            tokenBalance={tokenBalance}
-            tokenName={lpLabel}
-            pid={pid}
-            depositFeeBP={farm.depositFeeBP}
-          />
+          <Button mt="16px" fullWidth>
+            {TranslateString('Coming Soon', 'Coming Soon')}
+          </Button>
         )
       }
     </Action>

@@ -7,6 +7,7 @@ import UnlockButton from '../../components/UnlockButton'
 import useActiveWeb3React from '../../hooks/useActiveWeb3React'
 import Page from '../../components/layout/Page'
 import useI18n from '../../hooks/useI18n'
+import useReferrals from '../../hooks/useReferrals'
 
 const Banner = styled.div`
   width: 100%;
@@ -136,6 +137,7 @@ const ReferralLinkInput = styled.input`
 
 const Referral: React.FC = () => {
   const TranslateString = useI18n()
+  const { totalReferrals, totalFees } = useReferrals()
   const [isCopiedLink, setIsCopiedLink] = useState<boolean>(false)
   const { account } = useActiveWeb3React()
   const { addToast } = useContext(ToastContext)
@@ -214,8 +216,8 @@ const Referral: React.FC = () => {
         </BannerHeading>
         <BannerText color="primary">
           {TranslateString(
-            'Share the referral link below to invite your friends and earn 1% of your friends earnings FOREVER!',
-            'Share the referral link below to invite your friends and earn 1% of your friends earnings FOREVER!',
+            'Share the referral link below to invite your friends and earn 3% of your friends earnings FOREVER!',
+            'Share the referral link below to invite your friends and earn 3% of your friends earnings FOREVER!',
           )}
         </BannerText>
       </Banner>
@@ -225,7 +227,7 @@ const Referral: React.FC = () => {
             <TotalReferrals>
               <CardBody p={40}>
                 <CardHeading mb="24px">{TranslateString('Referral Program', 'Referral Program')}</CardHeading>
-                <CardValue>0</CardValue>
+                <CardValue>{totalReferrals}</CardValue>
               </CardBody>
             </TotalReferrals>
             <TotalReferrals>
@@ -233,7 +235,7 @@ const Referral: React.FC = () => {
                 <CardHeading mb="24px">
                   {TranslateString('Total Referrals Fees Commissions', 'Total Referrals Fees Commissions')}
                 </CardHeading>
-                <CardValue>0,0000 HULK</CardValue>
+                <CardValue>{totalFees.toFixed(3)} HULK</CardValue>
               </CardBody>
             </TotalReferrals>
             <CardReferralLink>

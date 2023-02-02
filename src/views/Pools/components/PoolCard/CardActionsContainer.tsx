@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useMemo, useState, useCallback, useEffect, useContext } from 'react'
 import BigNumber from 'bignumber.js'
@@ -22,6 +23,7 @@ import { getAddress, getHULKTokenAddress } from '../../../../utils/addressHelper
 import { getBscScanLink } from '../../../../utils'
 import { ToastContext } from '../../../../contexts/ToastContext'
 import { fetchPoolUserDataAsync } from '../../../../state/pools'
+import { usePoolLength } from '../../../../hooks/useMasterChef'
 
 const Action = styled.div`
   margin-top: 8px;
@@ -58,7 +60,7 @@ const CardActions: React.FC<PoolCardActionsProps> = ({ pool, account }) => {
     return account && allowance && allowance.isGreaterThan(0)
   }, [account, allowance])
   const dispatch = useAppDispatch()
-
+  const length = usePoolLength()
   const lpContract = useLPContract(lpAddress)
 
   useEffect(() => {
@@ -133,19 +135,25 @@ const CardActions: React.FC<PoolCardActionsProps> = ({ pool, account }) => {
         // eslint-disable-next-line no-nested-ternary
         !account ? (
           <UnlockButton mt="16px" fullWidth />
-        ) : !isApproved ? (
-          <Button mt="16px" fullWidth disabled={pendingTx} onClick={handleApprove}>
-            {TranslateString('Approve Contract', 'Approve Contract')}
-          </Button>
+        ) : length?.gt(pid) ? (
+          !isApproved ? (
+            <Button mt="16px" fullWidth disabled={pendingTx} onClick={handleApprove}>
+              {TranslateString('Approve Contract', 'Approve Contract')}
+            </Button>
+          ) : (
+            <StakeAction
+              pool={pool}
+              stakedBalance={stakedBalance}
+              tokenBalance={tokenBalance}
+              tokenName={lpLabel}
+              pid={pid}
+              depositFeeBP={pool.depositFeeBP}
+            />
+          )
         ) : (
-          <StakeAction
-            pool={pool}
-            stakedBalance={stakedBalance}
-            tokenBalance={tokenBalance}
-            tokenName={lpLabel}
-            pid={pid}
-            depositFeeBP={pool.depositFeeBP}
-          />
+          <Button mt="16px" fullWidth>
+            {TranslateString('Coming Soon', 'Coming Soon')}
+          </Button>
         )
       }
     </Action>

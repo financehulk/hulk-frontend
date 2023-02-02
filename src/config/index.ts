@@ -1,9 +1,9 @@
-import BigNumber from "bignumber.js";
-import { ChainId } from "@hulkfinance/hulk-swap-sdk";
-import {BIG_TEN} from "../utils/bigNumber";
+import BigNumber from 'bignumber.js'
+import { ChainId } from '@hulkfinance/hulk-swap-sdk'
+import { BIG_TEN } from '../utils/bigNumber'
 
-// const defaultChainId = 56;
-const defaultChainId = 97;
+const defaultChainId = 56
+// const defaultChainId = 97
 const storageConnectorKey = 'HULK_connector'
 const MAX_SLIPPAGE = 5000
 const RISKY_SLIPPAGE_LOW = 50
@@ -15,7 +15,7 @@ BigNumber.config({
 
 export const BSC_BLOCK_TIME = 3
 
-export const BASE_BSC_SCAN_URLS: {[chainId in ChainId | string]: string} = {
+export const BASE_BSC_SCAN_URLS: { [chainId in ChainId | string]: string } = {
   [ChainId.MAINNET]: 'https://bscscan.com',
   [ChainId.BSCTESTNET]: 'https://testnet.bscscan.com',
 }
@@ -40,4 +40,4 @@ export const RECLAIM_AUCTIONS_TO_FETCH = 500
 export const AUCTION_WHITELISTED_BIDDERS_TO_FETCH = 500
 export const IPFS_GATEWAY = 'https://ipfs.io/ipfs'
 
-export {defaultChainId, storageConnectorKey, MAX_SLIPPAGE, RISKY_SLIPPAGE_HIGH, RISKY_SLIPPAGE_LOW}
+export { defaultChainId, storageConnectorKey, MAX_SLIPPAGE, RISKY_SLIPPAGE_HIGH, RISKY_SLIPPAGE_LOW }

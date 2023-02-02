@@ -103,7 +103,6 @@ const Farms: React.FC<FarmsProps> = () => {
               regularHulkPerBlock || 0,
             )
           : { hulkRewardsApr: 0, lpRewardsApr: 0 }
-        console.log(farm, farm.poolWeight.toNumber())
 
         return { ...farm, apr: hulkRewardsApr, lpRewardsApr, liquidity: totalLiquidity }
       })
@@ -122,7 +121,7 @@ const Farms: React.FC<FarmsProps> = () => {
 
   const chosenFarmsMemoized = useMemo(() => {
     let chosenFarms = []
-
+    console.log(isActive)
     const sortFarms = (farms: any) => {
       switch (sortOption) {
         case 'apr':

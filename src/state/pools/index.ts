@@ -15,7 +15,8 @@ import {
   fetchPoolUserEarnings,
   fetchPoolUserAllowances,
   fetchPoolUserTokenBalances,
-  fetchPoolUserStakedBalances, fetchPoolUserCanHarvest,
+  fetchPoolUserStakedBalances,
+  fetchPoolUserCanHarvest,
 } from './fetchPoolsUser'
 import { SerializedPoolsState, SerializedPool } from '../types'
 import { fetchMasterChefPoolPoolLength, fetchMasterChefRegularHulkPerBlock } from './fetchMasterChefData'
@@ -29,7 +30,7 @@ const noAccountPoolConfig = poolsConfig.map((pool: any) => ({
     stakedBalance: '0',
     earnings: '0',
     canHarvest: false,
-    nextHarvestUntil: undefined
+    nextHarvestUntil: undefined,
   },
 }))
 
@@ -43,17 +44,22 @@ const initialState: SerializedPoolsState = {
 export const nonArchivedPools = poolsConfig.filter(({ pid }: any) => !isArchivedPid(pid))
 
 // Async thunks
-export const fetchPoolsPublicDataAsync = createAsyncThunk<[SerializedPool[], number, number], number[], { state: AppState }>(
+export const fetchPoolsPublicDataAsync = createAsyncThunk<
+  [SerializedPool[], number, number],
+  number[],
+  { state: AppState }
+>(
   'pools/fetchPoolsPublicDataAsync',
   async (pids, ThunkAPI) => {
+    const allPids = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     const poolLength = await fetchMasterChefPoolPoolLength()
     const { farms } = ThunkAPI.getState()
     const regularHulkPerBlock = await fetchMasterChefRegularHulkPerBlock()
-    const poolsToFetch = poolsConfig.filter((poolConfig: any) => pids.includes(poolConfig.pid))
+    const poolsToFetch = poolsConfig.filter((poolConfig: any) => allPids.includes(poolConfig.pid))
     const poolsCanFetch = poolsToFetch.filter((f: any) => poolLength.gt(f.pid))
 
     // Add price helper pools
-    const poolsWithPriceHelpers = poolsCanFetch.concat([])
+    const poolsWithPriceHelpers = poolsToFetch.concat([])
 
     const pools = await fetchPools(poolsWithPriceHelpers)
 
@@ -82,8 +88,8 @@ interface PoolUserDataResponse {
   tokenBalance: string
   stakedBalance: string
   earnings: string
-  canHarvest: boolean,
-  nextHarvestUntil?: number,
+  canHarvest: boolean
+  nextHarvestUntil?: number
 }
 
 export const fetchPoolUserDataAsync = createAsyncThunk<
@@ -160,7 +166,7 @@ export const poolsSlice = createSlice({
             stakedBalance: '0',
             earnings: '0',
             canHarvest: false,
-            nextHarvestUntil: undefined
+            nextHarvestUntil: undefined,
           },
         }
       })

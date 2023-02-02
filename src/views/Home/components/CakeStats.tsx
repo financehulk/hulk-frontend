@@ -1,13 +1,17 @@
-import React from 'react'
+/* eslint-disable no-unneeded-ternary */
+import React, { useEffect, useState } from 'react'
 import { Card, CardBody, Heading, Text } from '@hulkfinance/hulk-uikit'
 import BigNumber from 'bignumber.js/bignumber'
 import styled from 'styled-components'
 import CardValue from './CardValue'
-import { usePriceHULKBusd } from '../../../state/farms/hooks'
+import { usePriceHULKBusd, useTotalValue } from '../../../state/farms/hooks'
 import useI18n from '../../../hooks/useI18n'
 import { getBalanceNumber } from '../../../utils/formatBalance'
-import { useBurnedBalance, useTotalSupply } from '../../../hooks/useTokenBalance'
+import { useBurnedBalance, useMaxTxAmount, useTotalSupply } from '../../../hooks/useTokenBalance'
 import { getHULKTokenAddress } from '../../../utils/addressHelpers'
+import { useTotalValue as useTotalValuePools } from '../../../state/pools/hooks'
+import { BIG_ZERO } from '../../../utils/bigNumber'
+import { useHulkPerBlock, useRemainRewards } from '../../../hooks/useMasterChef'
 
 const StyledCakeStats = styled(Card)`
   margin-left: auto;
@@ -48,6 +52,27 @@ const CakeStats = () => {
   const circSupply = totalSupply ? totalSupply.minus(burnedBalance) : new BigNumber(0)
   const hulkSupply = getBalanceNumber(circSupply)
   const marketCap = eggPrice.times(circSupply)
+  const maxTxAmount = useMaxTxAmount()
+
+  const totalValueFarms = useTotalValue()
+  const totalValuePools = useTotalValuePools()
+
+  const [TVL, setTVL] = useState(0)
+
+  useEffect(() => {
+    console.log('TVL')
+    const val = totalValueFarms.plus(totalValuePools)
+    setTVL(val.toNumber())
+  }, [totalValueFarms, totalValuePools])
+
+  const hulkPerBlock = useHulkPerBlock()
+  const hulkPerDay = hulkPerBlock?.times(7200)
+
+  const remainRewards = useRemainRewards()
+
+  // const hulkPerBlock = BIG_ZERO
+
+  // const remainRewards = BIG_ZERO
 
   return (
     <StyledCakeStats>
@@ -59,33 +84,36 @@ const CakeStats = () => {
         </Row>
         <Row>
           <TextItem>{TranslateString('Total supply', 'Total Supply')}</TextItem>
-          {hulkSupply && <CardValue fontSize="20px" value={hulkSupply} decimals={0} />}
+          <CardValue fontSize="20px" value={hulkSupply ? hulkSupply : 0} decimals={0} />
         </Row>
         <Row>
           <TextItem>{TranslateString('Total burned', 'Total Burned')}</TextItem>
-          <CardValue fontSize="20px" value={getBalanceNumber(burnedBalance)} decimals={0} />
+          <CardValue fontSize="20px" value={burnedBalance ? getBalanceNumber(burnedBalance) : 0} decimals={0} />
         </Row>
         <Row>
           <TextItem>{TranslateString('Total locked', 'Total Locked')}</TextItem>
-          <CardValue fontSize="20px" value={100} decimals={0} />
+          <CardValue fontSize="20px" value={TVL} decimals={0} />
         </Row>
         <Row>
           <TextItem>{TranslateString('Circulating Supply', 'Circulating Supply')}</TextItem>
-          <CardValue fontSize="20px" value={100} decimals={0} />
+          <CardValue fontSize="20px" value={circSupply ? getBalanceNumber(circSupply) : 0} decimals={0} />
         </Row>
         <Row>
           <TextItem>{TranslateString('Un-mined', 'Un-mined')}</TextItem>
-          <CardValue fontSize="20px" value={100} decimals={0} />
+          <CardValue fontSize="20px" value={remainRewards ? getBalanceNumber(remainRewards) : 0} decimals={0} />
         </Row>
         <Row>
           <TextItem>{TranslateString('Mining /24h', 'Mining /24h')}</TextItem>
-          <CardValue fontSize="20px" value={100} decimals={0} />
+          <CardValue fontSize="20px" value={hulkPerDay ? getBalanceNumber(hulkPerDay) : 0} decimals={0} />
         </Row>
         <Row>
           <TextItem>
             {TranslateString('Max', 'Max')} Tx {TranslateString('Amount', 'Amount')}
           </TextItem>
-          <TextItem>100</TextItem>
+
+          <CardValue fontSize="20px" value={maxTxAmount ? getBalanceNumber(maxTxAmount) : 0} decimals={0} />
+
+          {/* <TextItem>{maxTxAmount ? getBalanceNumber(maxTxAmount) : 0}</TextItem> */}
           {/* <TextItem >{mashPerBlock}</TextItem> */}
         </Row>
       </CardBody>

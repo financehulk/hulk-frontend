@@ -1,7 +1,7 @@
 import { ChainId } from '@hulkfinance/hulk-swap-sdk'
 import addresses from '../config/constants/contracts'
 import { Address } from '../config/constants/types'
-import {defaultChainId} from "../config";
+import { defaultChainId } from '../config'
 
 export const getAddress = (address: Address): string => {
   const chainId = defaultChainId
@@ -28,4 +28,7 @@ export const getHULKTokenAddress = () => {
 }
 export const getHULKPreAddress = () => {
   return getAddress(addresses.hulkpre)
+}
+export const getHULKReferralAddress = () => {
+  return getAddress(addresses.HULKReferral)
 }

@@ -15,7 +15,11 @@ import {
   // getHulkVaultAddress, getChainlinkOracleAddress, getClaimRefundAddress, getEasterNftAddress,
   // getFarmAuctionAddress,
   // getLotteryV2Address,
-  getMasterChefAddress, getMasterChefV1Address, getMulticallAddress, getMulticallV2Address,
+  getMasterChefAddress,
+  getMasterChefV1Address,
+  getMulticallAddress,
+  getMulticallV2Address,
+  getHULKReferralAddress,
   // getNftMarketAddress,
   // getNftSaleAddress, getPancakeProfileAddress,
   // getPancakeRabbitsAddress, getPancakeSquadAddress,
@@ -30,9 +34,10 @@ import masterChef from '../config/abi/masterchef.json'
 import masterChefV1 from '../config/abi/masterchefV1.json'
 import MultiCallAbi from '../config/abi/Multicall.json'
 import MultiCallV2Abi from '../config/abi/MulticallV2.json'
+import HULKReferralAbi from '../config/abi/HULKReferral.json'
 import bep20Abi from '../config/abi/erc20.json'
 
-import {simpleRpcProvider} from "./contracts";
+import { simpleRpcProvider } from './contracts'
 
 export const getContract = (abi: any, address: string, signer?: Signer | Provider) => {
   const signerOrProvider = signer ?? simpleRpcProvider
@@ -57,8 +62,11 @@ export const getMulticallContract = () => {
 export const getMulticallV2Contract = () => {
   return getContract(MultiCallV2Abi, getMulticallV2Address(), simpleRpcProvider)
 }
+export const getHULKReferralContract = () => {
+  return getContract(HULKReferralAbi, getHULKReferralAddress(), simpleRpcProvider)
+}
 
 export const getBep20Contract = (address: string, signer?: Signer | Provider) => {
-  if (address === "") return null
+  if (address === '') return null
   return getContract(bep20Abi, address, signer)
 }
