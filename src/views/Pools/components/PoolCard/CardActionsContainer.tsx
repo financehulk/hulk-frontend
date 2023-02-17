@@ -55,7 +55,7 @@ const CardActions: React.FC<PoolCardActionsProps> = ({ pool, account }) => {
   const lpAddress = getAddress(pool.lpAddresses)
   const { fetchWithCatchTxError, loading: pendingTx } = useCatchTxError()
   const { allowance } = pool.userData || {}
-  const [tokens, setTokens] = useState<{ token0: string; token1: string }>({ token0: '', token1: '' })
+  // const [tokens, setTokens] = useState<{ token0: string; token1: string }>({ token0: '', token1: '' })
   const isApproved = useMemo(() => {
     return account && allowance && allowance.isGreaterThan(0)
   }, [account, allowance])
@@ -63,28 +63,28 @@ const CardActions: React.FC<PoolCardActionsProps> = ({ pool, account }) => {
   const length = usePoolLength()
   const lpContract = useLPContract(lpAddress)
 
-  useEffect(() => {
-    if (lpContract && lpAddress !== getHULKTokenAddress()) {
-      lpContract.token0().then((res: string) => {
-        setTokens((prevState) => {
-          return {
-            ...prevState,
-            token0: res,
-          }
-        })
-      })
-      lpContract.token1().then((res: string) => {
-        setTokens((prevState) => {
-          return {
-            ...prevState,
-            token1: res,
-          }
-        })
-      })
-    } else if (lpAddress !== getHULKTokenAddress()) {
-      setTokens({ token0: getHULKTokenAddress(), token1: getHULKTokenAddress() })
-    }
-  }, [lpAddress, lpContract])
+  // useEffect(() => {
+  //   if (lpContract && lpAddress !== getHULKTokenAddress()) {
+  //     lpContract.token0().then((res: string) => {
+  //       setTokens((prevState) => {
+  //         return {
+  //           ...prevState,
+  //           token0: res,
+  //         }
+  //       })
+  //     })
+  //     lpContract.token1().then((res: string) => {
+  //       setTokens((prevState) => {
+  //         return {
+  //           ...prevState,
+  //           token1: res,
+  //         }
+  //       })
+  //     })
+  //   } else if (lpAddress !== getHULKTokenAddress()) {
+  //     setTokens({ token0: getHULKTokenAddress(), token1: getHULKTokenAddress() })
+  //   }
+  // }, [lpAddress, lpContract])
   const { onApprove } = useApprovePool(lpContract)
 
   const handleApprove = useCallback(async () => {

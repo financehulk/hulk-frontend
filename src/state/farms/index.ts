@@ -43,7 +43,7 @@ const initialState: SerializedFarmsState = {
 }
 
 export const nonArchivedFarms = farmsConfig.filter(({ pid }: any) => !isArchivedPid(pid))
-
+const allPids = [4, 8, 9]
 // Async thunks
 export const fetchFarmsPublicDataAsync = createAsyncThunk<
   [SerializedFarm[], number, number],
@@ -52,15 +52,13 @@ export const fetchFarmsPublicDataAsync = createAsyncThunk<
 >(
   'farms/fetchFarmsPublicDataAsync',
   async (pids) => {
-    const allPids = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     const poolLength = await fetchMasterChefFarmPoolLength()
     const regularHulkPerBlock = await fetchMasterChefRegularHulkPerBlock()
     const farmsToFetch = farmsConfig.filter((farmConfig: any) => allPids.includes(farmConfig.pid))
     const farmsCanFetch = farmsToFetch.filter((f: any) => poolLength.gt(f.pid))
-
     // Add price helper farms
-    const farmsWithPriceHelpers = farmsToFetch.concat([])
-
+    const farmsWithPriceHelpers = farmsCanFetch.concat([])
+    // console.log(farmsWithPriceHelpers)
     const farms = await fetchFarms(farmsWithPriceHelpers)
 
     const farmsWithPrices = getFarmsPrices(farms)
@@ -103,7 +101,7 @@ export const fetchFarmUserDataAsync = createAsyncThunk<
   'farms/fetchFarmUserDataAsync',
   async ({ account, pids }) => {
     const poolLength = await fetchMasterChefFarmPoolLength()
-    const farmsToFetch = farmsConfig.filter((farmConfig) => pids.includes(farmConfig.pid))
+    const farmsToFetch = farmsConfig.filter((farmConfig) => allPids.includes(farmConfig.pid))
     const farmsCanFetch = farmsToFetch.filter((f) => poolLength.gt(f.pid))
     const userFarmAllowances = await fetchFarmUserAllowances(account, farmsCanFetch)
     const userFarmTokenBalances = await fetchFarmUserTokenBalances(account, farmsCanFetch)

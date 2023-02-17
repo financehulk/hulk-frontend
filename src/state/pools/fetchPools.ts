@@ -11,8 +11,14 @@ const fetchPools = async (poolsToFetch: SerializedPoolConfig[]): Promise<Seriali
   const masterChefResult = await fetchMasterChefData(poolsToFetch)
 
   return poolsToFetch.map((pool, index) => {
-    const [tokenBalanceLP, quoteTokenBalanceLP, lpTokenBalanceMC, lpTotalSupply, tokenDecimals, quoteTokenDecimals] =
-      poolResult[index]
+    const [
+      tokenBalanceLP,
+      quoteTokenBalanceLP,
+      lpTokenBalanceMC,
+      lpTotalSupply,
+      tokenDecimals,
+      quoteTokenDecimals,
+    ] = poolResult[index]
 
     const [info, totalRegularAllocPoint] = masterChefResult[index]
 
@@ -31,6 +37,7 @@ const fetchPools = async (poolsToFetch: SerializedPoolConfig[]): Promise<Seriali
     const lpTotalInQuoteToken = quoteTokenAmountMc.times(new BigNumber(1))
 
     const allocPoint = info ? new BigNumber(info.allocPoint?._hex) : BIG_ZERO
+    console.log(allocPoint.toString())
     const poolWeight = totalRegularAllocPoint ? allocPoint.div(new BigNumber(totalRegularAllocPoint)) : BIG_ZERO
 
     return {

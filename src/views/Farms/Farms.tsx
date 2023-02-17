@@ -92,6 +92,7 @@ const Farms: React.FC<FarmsProps> = () => {
         if (!farm.lpTotalInQuoteToken || !farm.quoteTokenPriceBusd) {
           return farm
         }
+        // console.log(farm)
         const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteTokenPriceBusd)
 
         const { hulkRewardsApr, lpRewardsApr } = isActive
@@ -99,7 +100,7 @@ const Farms: React.FC<FarmsProps> = () => {
               new BigNumber(farm.poolWeight),
               hulkPrice,
               totalLiquidity,
-              farm.lpAddresses[ChainId.BSCTESTNET],
+              farm.lpAddresses[ChainId.MAINNET],
               regularHulkPerBlock || 0,
             )
           : { hulkRewardsApr: 0, lpRewardsApr: 0 }
@@ -121,7 +122,7 @@ const Farms: React.FC<FarmsProps> = () => {
 
   const chosenFarmsMemoized = useMemo(() => {
     let chosenFarms = []
-    console.log(isActive)
+    // console.log(isActive)
     const sortFarms = (farms: any) => {
       switch (sortOption) {
         case 'apr':
@@ -142,7 +143,7 @@ const Farms: React.FC<FarmsProps> = () => {
     if (isActive) {
       chosenFarms = stakedOnly ? farmsList(stakedOnlyFarms) : farmsList(activeFarms)
     }
-    console.log(chosenFarms)
+    // console.log(chosenFarms)
     return sortFarms(chosenFarms).slice(0, numberOfFarmsVisible)
   }, [sortOption, activeFarms, farmsList, isActive, stakedOnly, stakedOnlyFarms, numberOfFarmsVisible])
 
@@ -178,7 +179,7 @@ const Farms: React.FC<FarmsProps> = () => {
           isActive={isActive}
           setIsActive={setIsActive}
         />
-        <FarmList />
+        <FarmList stakedOnly={stakedOnly} />
       </Page>
     </FarmsContext.Provider>
   )

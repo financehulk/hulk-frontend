@@ -37,18 +37,17 @@ export const multicallv2 = async <T = any>(abi: any[], calls: Call[], options?: 
   const { requireSuccess = true, ...overrides } = options || {}
   const multi = getMulticallV2Contract()
   const itf = new Interface(abi)
-
   const calldata = calls.map((call) => ({
     target: call.address.toLowerCase(),
     callData: itf.encodeFunctionData(call.name, call.params),
   }))
-
+  // console.log('calls: ', calls)
   const returnData = await multi.tryAggregate(requireSuccess, calldata, overrides)
   const res = returnData.map((call: any, i: number) => {
     const [result, data] = call
     return result ? itf.decodeFunctionResult(calls[i].name, data) : null
   })
-
+  // console.log('res: ', res)
   return res as any
 }
 

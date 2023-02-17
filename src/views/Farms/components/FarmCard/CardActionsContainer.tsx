@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-console */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useMemo, useState, useCallback, useEffect, useContext } from 'react'
@@ -55,38 +57,40 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account }) => {
   const lpAddress = getAddress(farm.lpAddresses)
   const { fetchWithCatchTxError, loading: pendingTx } = useCatchTxError()
   const { allowance } = farm.userData || {}
-  const [tokens, setTokens] = useState<{ token0: string; token1: string }>({ token0: '', token1: '' })
+  // const [tokens, setTokens] = useState<{ token0: string; token1: string }>({ token0: '', token1: '' })
   const isApproved = useMemo(() => {
     return account && allowance && allowance.isGreaterThan(0)
   }, [account, allowance])
   const dispatch = useAppDispatch()
 
+  // pid === 4 ? console.log(farm.userData?.allowance.toString()) : ''
+
   const lpContract = useLPContract(lpAddress)
 
   const length = usePoolLength()
 
-  useEffect(() => {
-    if (lpContract && lpAddress !== getHULKTokenAddress()) {
-      lpContract.token0().then((res: string) => {
-        setTokens((prevState) => {
-          return {
-            ...prevState,
-            token0: res,
-          }
-        })
-      })
-      lpContract.token1().then((res: string) => {
-        setTokens((prevState) => {
-          return {
-            ...prevState,
-            token1: res,
-          }
-        })
-      })
-    } else if (lpAddress !== getHULKTokenAddress()) {
-      setTokens({ token0: getHULKTokenAddress(), token1: getHULKTokenAddress() })
-    }
-  }, [lpAddress, lpContract])
+  // useEffect(() => {
+  //   if (lpContract && lpAddress !== getHULKTokenAddress()) {
+  //     lpContract.token0().then((res: string) => {
+  //       setTokens((prevState) => {
+  //         return {
+  //           ...prevState,
+  //           token0: res,
+  //         }
+  //       })
+  //     })
+  //     lpContract.token1().then((res: string) => {
+  //       setTokens((prevState) => {
+  //         return {
+  //           ...prevState,
+  //           token1: res,
+  //         }
+  //       })
+  //     })
+  //   } else if (lpAddress !== getHULKTokenAddress()) {
+  //     setTokens({ token0: getHULKTokenAddress(), token1: getHULKTokenAddress() })
+  //   }
+  // }, [lpAddress, lpContract])
   const { onApprove } = useApproveFarm(lpContract)
 
   const handleApprove = useCallback(async () => {

@@ -121,7 +121,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, hulkPrice, bnbPrice,
     }
     return '-'
   }, [farm.userData])
-  console.log(farm.token.symbol)
+  // console.log(farm.token.symbol)
   return (
     <FCard>
       {farm.token.symbol === 'HULK' && <StyledCardAccent />}

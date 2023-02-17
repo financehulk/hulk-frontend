@@ -96,10 +96,10 @@ export const usePriceHULKBusd = (): BigNumber => {
 }
 
 export const usePriceBnbBusd = (): BigNumber => {
-  const pid = 5 // BUSD-BNB LP
+  const pid = 4 // BUSD-BNB LP
   const farm = useFarmFromPid(pid)
   if (farm) {
-    return farm.tokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : BIG_ZERO
+    return farm.quoteTokenPriceBusd ? new BigNumber(farm.quoteTokenPriceBusd) : BIG_ZERO
   }
   return BIG_ZERO
 }
@@ -123,7 +123,7 @@ export const useTotalValue = (): BigNumber => {
     const farm = farms.data[i]
     if (farm.lpTotalInQuoteToken) {
       let val
-      if (farm.quoteToken.symbol === QuoteToken.BNB) {
+      if (farm.quoteToken.symbol === QuoteToken.BNB || farm.quoteToken.symbol === QuoteToken.WBNB) {
         val = bnbPrice.times(farm.lpTotalInQuoteToken)
       } else if (farm.quoteToken.symbol === QuoteToken.CAKE) {
         val = hulkPrice.times(farm.lpTotalInQuoteToken)

@@ -1,7 +1,7 @@
 import BigNumber from 'bignumber.js'
 import erc20ABI from '../../config/abi/erc20.json'
 import { getAddress, getMasterChefAddress } from '../../utils/addressHelpers'
-import masterchefABI from "../../config/abi/masterchef.json"
+import masterchefABI from '../../config/abi/masterchef.json'
 import multicall from '../../utils/multicall'
 import { SerializedFarmConfig } from '../../config/constants/types'
 
@@ -52,7 +52,7 @@ export const fetchFarmUserStakedBalances = async (account: string, farmsToFetch:
   const parsedStakedBalances = rawStakedBalances.map((stakedBalance: any) => {
     return {
       stakedBalance: new BigNumber(stakedBalance[0]._hex).toJSON(),
-      nextHarvestUntil: stakedBalance.nextHarvestUntil.toNumber()
+      nextHarvestUntil: stakedBalance.nextHarvestUntil.toNumber(),
     }
   })
   return parsedStakedBalances

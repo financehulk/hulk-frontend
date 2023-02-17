@@ -30,11 +30,11 @@ const Menu = (props: any) => {
       items: [
         {
           label: TranslateString('Exchange', 'Exchange'),
-          href: 'https://dex.hulkfiinance.com',
+          href: 'https://pancakeswap.finance/swap',
         },
         {
           label: TranslateString('Liquidity', 'Liquidity'),
-          href: 'https://dex.hulkfiinance.com/#/pool',
+          href: 'https://pancakeswap.finance/liquidity',
         },
       ],
     },

@@ -51,7 +51,7 @@ export const fetchPoolsPublicDataAsync = createAsyncThunk<
 >(
   'pools/fetchPoolsPublicDataAsync',
   async (pids, ThunkAPI) => {
-    const allPids = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    const allPids = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     const poolLength = await fetchMasterChefPoolPoolLength()
     const { farms } = ThunkAPI.getState()
     const regularHulkPerBlock = await fetchMasterChefRegularHulkPerBlock()

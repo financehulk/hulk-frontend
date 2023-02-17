@@ -9,10 +9,11 @@ export type TranslatableText =
         [key: string]: string | number
       }
     }
-export type Address = {[chain in ChainId | string]: string}
+export type Address = { [chain in ChainId | string]: string }
 
 export enum QuoteToken {
   'BNB' = 'BNB',
+  'WBNB' = 'WBNB',
   'CAKE' = 'CAKE',
   'SYRUP' = 'SYRUP',
   'BUSD' = 'BUSD',
@@ -21,7 +22,7 @@ export enum QuoteToken {
   'WCAKE' = 'WCAKE',
   'VAULT' = 'VAULT',
   'BTCB' = 'BTCB',
-  'MASH' = 'MASH'
+  'MASH' = 'MASH',
 }
 export interface SerializedToken {
   chainId: number
@@ -67,16 +68,16 @@ export interface Ifo {
 }
 
 export interface Language {
-  code: string;
-  language: string;
-  locale: string;
+  code: string
+  language: string
+  locale: string
 }
 
 interface FarmConfigBaseProps {
   pid: number
   v1pid: number
   lpSymbol: string
-  defaultApr: string,
+  defaultApr: string
   lpAddresses: Address
   multiplier?: string
   isCommunity?: boolean
@@ -89,6 +90,7 @@ interface FarmConfigBaseProps {
 }
 
 export interface SerializedFarmConfig extends FarmConfigBaseProps {
+  isStable?: any
   token: SerializedToken
   quoteToken: SerializedToken
 }
@@ -102,7 +104,7 @@ interface PoolConfigBaseProps {
   pid: number
   v1pid: number
   lpSymbol: string
-  defaultApr: string,
+  defaultApr: string
   lpAddresses: Address
   multiplier?: string
   isCommunity?: boolean
@@ -123,7 +125,6 @@ export interface DeserializedPoolConfig extends PoolConfigBaseProps {
   token: Token
   quoteToken: Token
 }
-
 
 export type Images = {
   lg: string

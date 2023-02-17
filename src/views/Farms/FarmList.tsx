@@ -4,6 +4,7 @@ import { usePriceHULKBusd } from '../../state/farms/hooks'
 import { FarmsContext } from '../../contexts/FarmContext'
 import FarmCard from './components/FarmCard/FarmCard'
 import FlexLayout from '../../components/layout/Flex'
+import farms from '../../config/constants/farms'
 
 const getDisplayApr = (cakeRewardsApr: any, lpRewardsApr: any) => {
   if (cakeRewardsApr && lpRewardsApr) {
@@ -14,14 +15,28 @@ const getDisplayApr = (cakeRewardsApr: any, lpRewardsApr: any) => {
   }
   return null
 }
-function FarmList() {
+function FarmList({ stakedOnly }: any) {
   const { account } = useWeb3React()
   const { chosenFarmsMemoized } = useContext(FarmsContext)
   const hulkPrice = usePriceHULKBusd()
   // console.log(chosenFarmsMemoized)
+  let resFarms: any[] = []
+  if (!stakedOnly) {
+    for (let i = 0; i < chosenFarmsMemoized.length; i++) {
+      resFarms.push(chosenFarmsMemoized[i])
+    }
+    for (let i = 0; i < farms.length; i++) {
+      if (chosenFarmsMemoized.findIndex((item) => item.pid === farms[i].pid) === -1) {
+        resFarms.push(farms[i])
+      }
+    }
+  } else {
+    resFarms = [...chosenFarmsMemoized]
+  }
+
   return (
     <FlexLayout>
-      {chosenFarmsMemoized.map((farm) => {
+      {resFarms.map((farm) => {
         return (
           <FarmCard
             key={farm.pid}

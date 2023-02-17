@@ -54,7 +54,7 @@ export const usePoolLength = () => {
   const fetchPoolLength = useCallback(async () => {
     if (account && library) {
       const length = await masterChefContract.poolLength()
-      console.log(length)
+      // console.log(length)
       setPoolLength(new BigNumber(length.toString()))
     }
   }, [account, library])

@@ -4,7 +4,7 @@
 import { defaultChainId } from '../config'
 
 const getLiquidityUrlPathParts = ({ quoteTokenAdresses, quoteTokenSymbol, tokenAddresses }: any) => {
-  const firstPart = quoteTokenSymbol === 'BNB' ? 'ETH' : quoteTokenAdresses
+  const firstPart = quoteTokenSymbol === 'WBNB' ? 'BNB' : quoteTokenAdresses
   const secondPart = tokenAddresses
   return `${firstPart}/${secondPart}`
 }

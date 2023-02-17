@@ -103,16 +103,17 @@ const getFarmsPrices = (farms: SerializedFarm[]) => {
       const quoteTokenFarm = getFarmFromTokenSymbol(farms, farm.quoteToken.symbol || '')
       const tokenPriceBusd = getFarmBaseTokenPrice(farm, quoteTokenFarm, bnbPriceBusd)
       const quoteTokenPriceBusd = getFarmQuoteTokenPrice(farm, quoteTokenFarm, bnbPriceBusd, cakePriceBusd)
-
+      // console.log(tokenPriceBusd.toString())
       return {
         ...farm,
-        tokenPriceBusd: tokenPriceBusd.toJSON(),
-        quoteTokenPriceBusd: quoteTokenPriceBusd.toJSON(),
+        tokenPriceBusd: !tokenPriceBusd.isNaN() ? tokenPriceBusd.toJSON() : BIG_ONE.toJSON(),
+        quoteTokenPriceBusd: !quoteTokenPriceBusd.isNaN() ? quoteTokenPriceBusd.toJSON() : BIG_ONE.toJSON(),
       }
     })
     return farmsWithPrices
   }
   return []
 }
+// tokenPriceBusd ? tokenPriceBusd.toJSON() : BIG_ONE,
 
 export default getFarmsPrices

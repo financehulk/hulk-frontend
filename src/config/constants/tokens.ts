@@ -24,7 +24,7 @@ export const mainnetTokens = defineTokens({
   bnb: new Token(MAINNET, '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', 18, 'BNB', 'BNB', 'https://www.binance.com/'),
   hulktoken: new Token(
     MAINNET,
-    '0x28116277510ED745cDE78e637a491F236F3fF673',
+    '0xc44A5B0E8533a7C4E79D151A28271eB771CDf400',
     18,
     'HULKToken',
     'HULKToken',
