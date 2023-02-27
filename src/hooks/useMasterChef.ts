@@ -12,7 +12,7 @@ export const useHulkPerBlock = () => {
   const { account, library } = useActiveWeb3React()
 
   const fetchHulkPerBlock = useCallback(async () => {
-    console.log('fetchHulkPerBlock')
+    // console.log('fetchHulkPerBlock')
     if (account && library) {
       const regularHulkPerBlock = await masterChefContract.hulkPerBlock()
       setHulkPerBlock(new BigNumber(regularHulkPerBlock.toString()))
@@ -32,7 +32,7 @@ export const useRemainRewards = () => {
   const { account, library } = useActiveWeb3React()
 
   const fetchRemainRewards = useCallback(async () => {
-    console.log('remainRewards')
+    // console.log('remainRewards')
     if (account && library) {
       const remain = masterChefContract.remainRewards()
       setRemainRewards(new BigNumber(remain.toString()))

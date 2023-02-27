@@ -69,23 +69,23 @@ const Menu = (props: any) => {
       items: [
         {
           label: 'BscScan',
-          href: '/',
+          href: 'https://bscscan.com/address/0xc44A5B0E8533a7C4E79D151A28271eB771CDf400',
         },
         {
           label: 'DappRadar',
-          href: '/',
+          href: 'https://dappradar.com',
         },
         {
           label: 'CoinGecko',
-          href: '/',
+          href: 'https://www.coingecko.com',
         },
         {
           label: 'CoinMarketCap',
-          href: '/',
+          href: 'https://coinmarketcap.com',
         },
         {
           label: 'LiveCoinWatch',
-          href: '/',
+          href: 'https://www.livecoinwatch.com',
         },
         {
           label: 'Vfat',
@@ -130,7 +130,7 @@ const Menu = (props: any) => {
         setLang={setSelectedLanguage}
         cakePriceUsd={hulkPriceUsd.toNumber()}
         links={config}
-        priceLink="https://bscscan.com/token/0x787732f27d18495494cea3792ed7946bbcff8db2"
+        priceLink="https://bscscan.com/token/0xc44A5B0E8533a7C4E79D151A28271eB771CDf400"
         {...props}
       />
     </>

@@ -15,7 +15,7 @@ export default function useReferral() {
 
   const onSaveAffiliateAddress = useCallback(
     (address) => {
-      console.log(affiliateAddress)
+      // console.log(affiliateAddress)
       if (affiliateAddress === '0x0000000000000000000000000000000000000000') {
         setAffiliateAddress(address)
         localStorage.setItem(storageReferralKey, address)

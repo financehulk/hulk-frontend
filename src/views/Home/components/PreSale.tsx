@@ -71,26 +71,26 @@ function PreSale() {
           <span />
           <RowText>Dec 5th, 9AM UTC</RowText>
         </Row>
-        <Row>
+        {/* <Row>
           <RowText>IDO DFI {TranslateString('Price', 'Price')}</RowText>
           <span />
           <RowText>0.1 USD/DFI</RowText>
-        </Row>
-        <Row>
+        </Row> */}
+        {/* <Row>
           <RowText>{TranslateString('Funds to raise:', 'Funds to raise')} (BUSD)</RowText>
           <span />
           <RowText>100,000 BUSD</RowText>
-        </Row>
+        </Row> */}
         <Row>
           <RowText>{TranslateString('For sale', 'For Sale')}</RowText>
           <span />
-          <RowText>1,000,000 DFI</RowText>
+          <RowText>50,000,000 HULK</RowText>
         </Row>
-        <Row>
+        {/* <Row>
           <RowText>{TranslateString('Total committed:', 'Total committed')}</RowText>
           <span />
           <RowText>~$98,526 (98.53%)</RowText>
-        </Row>
+        </Row> */}
       </List>
     </PreSaleStyled>
   )

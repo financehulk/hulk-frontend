@@ -41,7 +41,7 @@ export default function useCallWithGasPrice() {
       )
 
       if (tx) {
-        console.log(tx)
+        // console.log(tx)
         // Sentry.addBreadcrumb({
         //   type: 'Transaction',
         //   message: `Transaction sent: ${tx.hash}`,

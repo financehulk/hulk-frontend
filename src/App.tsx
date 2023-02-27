@@ -46,7 +46,7 @@ const App: React.FC = () => {
   useEffect(() => {
     const provider = localStorage.getItem(storageConnectorKey)
     if (provider) {
-      console.log(provider)
+      // console.log(provider)
       login(provider || ConnectorNames.Injected)
     }
   }, [login])
@@ -55,14 +55,14 @@ const App: React.FC = () => {
 
   const saveAffiliateHandler = useCallback(
     (search: string) => {
-      console.log(search)
+      // console.log(search)
       if (search !== '') {
         const searchSplit = search.split('=')
         if (searchSplit.length > 1) {
           const affiliateAddress = searchSplit[1]
 
           if (isAddress(affiliateAddress) && affiliateAddress !== account) {
-            console.log(affiliateAddress)
+            // console.log(affiliateAddress)
             onSaveAffiliateAddress(affiliateAddress)
           }
         }
@@ -77,6 +77,17 @@ const App: React.FC = () => {
       saveAffiliateHandler(window.location.search)
     }
   }, [saveAffiliateHandler])
+
+  useEffect(() => {
+    const linkTW = document.querySelector('a[aria-label="Twitter"]')
+    if (linkTW) {
+      linkTW.attributes[2].nodeValue = 'https://twitter.com/hulk_finance?t=OJRRWyiKQiighQ8MRgHxKg&s=35'
+    }
+    const linkTG = document.querySelector('a[aria-label="Telegram"]')
+    if (linkTG) {
+      linkTG.attributes[2].nodeValue = 'https://t.me/HulkFinance_DEFI'
+    }
+  }, [])
 
   return (
     <>

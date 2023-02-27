@@ -26,8 +26,8 @@ const ArrowContainer = styled(Flex)`
   }
 `
 
-const ArrowIcon = styled(ArrowDownIcon)<{isReverse: boolean}>`
-  ${({isReverse}) => !isReverse ? `transform: rotateZ(-180);` : ''}
+const ArrowIcon = styled(ArrowDownIcon)<{ isReverse: boolean }>`
+  ${({ isReverse }) => (!isReverse ? `transform: rotateZ(-180);` : '')}
 `
 
 interface AnimatedArrowProps {
@@ -48,7 +48,12 @@ const AnimatedArrow: React.FC<AnimatedArrowProps> = ({ calculatorState }) => {
 
   return (
     <ArrowContainer justifyContent="center" my="24px" key={key}>
-      <ArrowIcon width="24px" height="24px" color="textSubtle" isReverse={mode === CalculatorMode.ROI_BASED_ON_PRINCIPAL} />
+      <ArrowIcon
+        width="24px"
+        height="24px"
+        color="textSubtle"
+        isReverse={mode === CalculatorMode.ROI_BASED_ON_PRINCIPAL}
+      />
     </ArrowContainer>
   )
 }

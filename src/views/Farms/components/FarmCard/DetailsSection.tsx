@@ -57,14 +57,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
     <Wrapper>
       <Flex justifyContent="space-between">
         <DetailText>{TranslateString('Stake', 'Stake')}:</DetailText>
-        <StyledLinkExternal
-          fontSize="20px"
-          href={
-            isTokenOnly
-              ? `https://pancakeswap.finance/swap/${tokenAddresses}?chain=bsc`
-              : `https://pancakeswap.finance/add/${liquidityUrlPathParts}?chain=bsc`
-          }
-        >
+        <StyledLinkExternal fontSize="20px" href={`https://pancakeswap.finance/add/${liquidityUrlPathParts}?chain=bsc`}>
           {lpLabel}
         </StyledLinkExternal>
       </Flex>
@@ -75,11 +68,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
         </Flex>
       )}
       <Flex justifyContent="flex-start">
-        <Link
-          external
-          href={isTokenOnly ? 'https://bscscan.com/address/0xc44A5B0E8533a7C4E79D151A28271eB771CDf400' : bscScanAddress}
-          fontSize="20px"
-        >
+        <Link external href={bscScanAddress} fontSize="20px">
           {TranslateString('View on BscScan', 'View on BscScan')}
         </Link>
       </Flex>

@@ -179,7 +179,7 @@ const Farms: React.FC<FarmsProps> = () => {
           isActive={isActive}
           setIsActive={setIsActive}
         />
-        <FarmList stakedOnly={stakedOnly} />
+        <FarmList stakedOnly={stakedOnly} isActive={isActive} />
       </Page>
     </FarmsContext.Provider>
   )

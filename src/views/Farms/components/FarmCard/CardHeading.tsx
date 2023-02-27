@@ -23,16 +23,10 @@ const MultiplierTag = styled(Tag)`
   margin-left: 4px;
 `
 
-const CardHeading: React.FC<ExpandableSectionProps> = ({
-  lpLabel,
-  multiplier,
-  token0,
-  token1,
-  depositFee,
-}) => {
+const CardHeading: React.FC<ExpandableSectionProps> = ({ lpLabel, multiplier, token0, token1, depositFee }) => {
   return (
     <Wrapper justifyContent="space-between" alignItems="center" mb="12px">
-      <PairImage token0={token0} token1={token1}/>
+      <PairImage token0={token0} token1={token1} />
       <Flex flexDirection="column" alignItems="flex-end">
         <Heading mb="4px">{lpLabel}</Heading>
         <Flex justifyContent="center">

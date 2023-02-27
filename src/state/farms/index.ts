@@ -54,7 +54,7 @@ export const fetchFarmsPublicDataAsync = createAsyncThunk<
   async (pids) => {
     const poolLength = await fetchMasterChefFarmPoolLength()
     const regularHulkPerBlock = await fetchMasterChefRegularHulkPerBlock()
-    const farmsToFetch = farmsConfig.filter((farmConfig: any) => allPids.includes(farmConfig.pid))
+    const farmsToFetch = farmsConfig.filter((farmConfig: any) => pids.includes(farmConfig.pid))
     const farmsCanFetch = farmsToFetch.filter((f: any) => poolLength.gt(f.pid))
     // Add price helper farms
     const farmsWithPriceHelpers = farmsCanFetch.concat([])
@@ -101,7 +101,7 @@ export const fetchFarmUserDataAsync = createAsyncThunk<
   'farms/fetchFarmUserDataAsync',
   async ({ account, pids }) => {
     const poolLength = await fetchMasterChefFarmPoolLength()
-    const farmsToFetch = farmsConfig.filter((farmConfig) => allPids.includes(farmConfig.pid))
+    const farmsToFetch = farmsConfig.filter((farmConfig) => pids.includes(farmConfig.pid))
     const farmsCanFetch = farmsToFetch.filter((f) => poolLength.gt(f.pid))
     const userFarmAllowances = await fetchFarmUserAllowances(account, farmsCanFetch)
     const userFarmTokenBalances = await fetchFarmUserTokenBalances(account, farmsCanFetch)

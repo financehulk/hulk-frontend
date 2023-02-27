@@ -60,7 +60,7 @@ const CakeStats = () => {
   const [TVL, setTVL] = useState(0)
 
   useEffect(() => {
-    console.log('TVL')
+    // console.log('TVL')
     const val = totalValueFarms.plus(totalValuePools)
     setTVL(val.toNumber())
   }, [totalValueFarms, totalValuePools])

@@ -37,7 +37,7 @@ const fetchPools = async (poolsToFetch: SerializedPoolConfig[]): Promise<Seriali
     const lpTotalInQuoteToken = quoteTokenAmountMc.times(new BigNumber(1))
 
     const allocPoint = info ? new BigNumber(info.allocPoint?._hex) : BIG_ZERO
-    console.log(allocPoint.toString())
+    // console.log(allocPoint.toString())
     const poolWeight = totalRegularAllocPoint ? allocPoint.div(new BigNumber(totalRegularAllocPoint)) : BIG_ZERO
 
     return {

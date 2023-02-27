@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { Card, CardBody, Heading, Text } from '@hulkfinance/hulk-uikit'
 import calendar from '../../../assets/images/calendar.png'
 
-
 const TimelineStyledCard = styled(Card)`
   margin-left: auto;
   margin-right: auto;
@@ -12,7 +11,7 @@ const TimelineStyledCard = styled(Card)`
 const CardHeading = styled(Heading)`
   font-size: 28px;
   font-weight: 900;
-  @media(min-width: 768px) {
+  @media (min-width: 768px) {
     font-size: 40px;
   }
 `
@@ -38,7 +37,7 @@ const Round = styled.div`
   img {
     width: 54px;
   }
-  @media(min-width: 768px) {
+  @media (min-width: 768px) {
     flex-direction: row;
     align-content: flex-start;
     align-items: flex-start;
@@ -53,7 +52,7 @@ const RoundDesc = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   margin-top: 8px;
-  @media(min-width: 768px) {
+  @media (min-width: 768px) {
     margin-left: 24px;
     margin-top: 0;
   }
@@ -63,24 +62,26 @@ function Timeline() {
     <TimelineStyledCard>
       <CardBody p={40}>
         <CardHeading mb="24px">TIMELINE</CardHeading>
-        <TimelineText><span>HULK token</span> will be distributed block by block from Feb 4th, 2022 ( 30% each month)</TimelineText>
+        <TimelineText>
+          <span>HULK token</span> will be distributed block by block from Feb 4th, 2022 ( 30% each month)
+        </TimelineText>
         <Round>
-          <img src={calendar} alt='calendar' />
+          <img src={calendar} alt="calendar" />
           <RoundDesc>
             <CardHeading mb="8px">PRESALE 1</CardHeading>
-            <TimelineText><span>Nov 3rd, 2021 - Dec 2nd, 2021</span>
-              <p>Amount: 33,000,000,000 HULK
-              Unit Price: $0.00001</p>
+            <TimelineText>
+              <span>Nov 3rd, 2021 - Dec 2nd, 2021</span>
+              <p>Amount: 33,000,000,000 HULK Unit Price: $0.00001</p>
             </TimelineText>
           </RoundDesc>
         </Round>
         <Round>
-          <img src={calendar} alt='calendar' />
+          <img src={calendar} alt="calendar" />
           <RoundDesc>
             <CardHeading mb="8px">ROUND 1</CardHeading>
-            <TimelineText><span>Nov 3rd, 2021 - Dec 2nd, 2021</span>
-              <p>Amount: 33,000,000,000 HULK
-              Unit Price: $0.00001</p>
+            <TimelineText>
+              <span>Nov 3rd, 2021 - Dec 2nd, 2021</span>
+              <p>Amount: 33,000,000,000 HULK Unit Price: $0.00001</p>
             </TimelineText>
           </RoundDesc>
         </Round>

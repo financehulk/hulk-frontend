@@ -18,10 +18,10 @@ const PoolTabButtons = ({ stakedOnly, setStakedOnly, isActive, setIsActive }: Po
         <Toggle checked={stakedOnly} onChange={() => setStakedOnly(!stakedOnly)} />
         <Text> {TranslateString('Staked only', 'Staked only')}</Text>
       </ToggleWrapper>
-      <ButtonMenu activeIndex={isActive ? 0 : 1} size="sm" variant="subtle" onClick={() => setIsActive(!isActive)}>
+      {/* <ButtonMenu activeIndex={isActive ? 0 : 1} size="sm" variant="subtle" onClick={() => setIsActive(!isActive)}>
         <ButtonMenuItem as="button">{TranslateString('Active', 'Active')}</ButtonMenuItem>
         <ButtonMenuItem as="button">{TranslateString('Inactive', 'Inactive')}</ButtonMenuItem>
-      </ButtonMenu>
+      </ButtonMenu> */}
     </Wrapper>
   )
 }

@@ -24,7 +24,6 @@ const fetchFarms = async (farmsToFetch: SerializedFarmConfig[]): Promise<Seriali
 
     // Ratio in % of LP tokens that are staked in the MC, vs the total number in circulation
     const lpTokenRatio = new BigNumber(lpTokenBalanceMC).div(new BigNumber(lpTotalSupply))
-
     // Raw amount of token in the LP, including those not staked
     const tokenAmountTotal = new BigNumber(tokenBalanceLP).div(BIG_TEN.pow(tokenDecimals))
     const quoteTokenAmountTotal = new BigNumber(quoteTokenBalanceLP).div(BIG_TEN.pow(quoteTokenDecimals))

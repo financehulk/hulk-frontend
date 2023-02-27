@@ -57,7 +57,7 @@ const Separator = styled(Text)`
 function Timer() {
   const TranslateString = useI18n()
   const timestamp: number = useMemo(() => {
-    return 1645621200000
+    return 1
   }, [])
 
   const time = useMemo(() => {
@@ -67,7 +67,7 @@ function Timer() {
     expiryTimestamp: time,
     autoStart: true,
     onExpire: () => {
-      console.log('finish')
+      // console.log('finish')
     },
   })
 

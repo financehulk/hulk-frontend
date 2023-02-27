@@ -15,13 +15,13 @@ const getDisplayApr = (cakeRewardsApr: any, lpRewardsApr: any) => {
   }
   return null
 }
-function FarmList({ stakedOnly }: any) {
+function FarmList({ stakedOnly, isActive }: any) {
   const { account } = useWeb3React()
   const { chosenFarmsMemoized } = useContext(FarmsContext)
   const hulkPrice = usePriceHULKBusd()
   // console.log(chosenFarmsMemoized)
   let resFarms: any[] = []
-  if (!stakedOnly) {
+  if (!stakedOnly && isActive) {
     for (let i = 0; i < chosenFarmsMemoized.length; i++) {
       resFarms.push(chosenFarmsMemoized[i])
     }

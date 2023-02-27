@@ -75,7 +75,7 @@ export default function Updater(): null {
                 action: {
                   text: 'View transaction',
                   url: `https://testnet.bscscan.com/tx/${receipt.transactionHash}`,
-                }
+                },
               }
               addToast(toast)
             } else {

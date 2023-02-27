@@ -42,7 +42,7 @@ export const useTotalSupply = () => {
   const { account, library } = useActiveWeb3React()
 
   const fetchTotalSupply = useCallback(async () => {
-    console.log('fetchTotalSupply')
+    // console.log('fetchTotalSupply')
     if (account && library) {
       const hulkContract = getHULKTokenContract(getProviderOrSigner(library, account))
       const supply = await hulkContract.totalSupply()
@@ -62,7 +62,7 @@ export const useMaxTxAmount = () => {
   const { account, library } = useActiveWeb3React()
 
   const fetchMaxTxAmount = useCallback(async () => {
-    console.log('fetchMaxTxAmount')
+    // console.log('fetchMaxTxAmount')
     if (account && library) {
       const hulkContract = getHULKTokenContract(getProviderOrSigner(library, account))
       const max = await hulkContract._maxTxAmount()
@@ -83,7 +83,7 @@ export const useBurnedBalance = (tokenAddress: string) => {
   const { account, library } = useActiveWeb3React()
 
   const fetchBalance = useCallback(async () => {
-    console.log('useBurnedBalance')
+    // console.log('useBurnedBalance')
     if (account && library) {
       const hulkContract = getHULKTokenContract(getProviderOrSigner(library, account))
       const bal = await hulkContract.balanceOf('0x000000000000000000000000000000000000dEaD')

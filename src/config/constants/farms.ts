@@ -8,12 +8,24 @@ const farms: SerializedFarmConfig[] = [
   /**
    * These 3 farms (PID 0, 2, 3) should always be at the top of the file.
    */
-
+  {
+    pid: 10,
+    v1pid: 1,
+    lpSymbol: 'HULK-WBNB LP',
+    defaultApr: '174311',
+    depositFeeBP: 0,
+    lpAddresses: {
+      97: '0x71e8d29CEB4b97f870f8CB5b4359C63C9469a5b4',
+      56: '0x847283D62D6341F88E5459B592E77723051b89B4',
+    },
+    token: serializedTokens.hulktoken,
+    quoteToken: serializedTokens.wbnb,
+  },
   {
     pid: 4,
     v1pid: 0,
     lpSymbol: 'BNB-BUSD',
-    defaultApr: '10',
+    defaultApr: '154327',
     depositFeeBP: 150,
     lpAddresses: {
       97: '0x384Fb8e2f3c3b2086C7aD7f1b77776DB9cbAECff',
@@ -26,7 +38,7 @@ const farms: SerializedFarmConfig[] = [
     pid: 8,
     v1pid: 1,
     lpSymbol: 'USDT-BUSD LP',
-    defaultApr: '10',
+    defaultApr: '102335',
     depositFeeBP: 150,
     isStable: true,
     lpAddresses: {
@@ -40,7 +52,7 @@ const farms: SerializedFarmConfig[] = [
     pid: 9,
     v1pid: 1,
     lpSymbol: 'USDC-BUSD LP',
-    defaultApr: '10',
+    defaultApr: '113341',
     depositFeeBP: 150,
     isStable: true,
     lpAddresses: {
@@ -50,19 +62,7 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.usdc,
     quoteToken: serializedTokens.busd,
   },
-  {
-    pid: 1111,
-    v1pid: 1,
-    lpSymbol: 'HULK-BNB LP',
-    defaultApr: '10',
-    depositFeeBP: 0,
-    lpAddresses: {
-      97: '0x71e8d29CEB4b97f870f8CB5b4359C63C9469a5b4',
-      56: '0x71e8d29CEB4b97f870f8CB5b4359C63C9469a5b4',
-    },
-    token: serializedTokens.hulktoken,
-    quoteToken: serializedTokens.wbnb,
-  },
+
   {
     pid: 1112,
     v1pid: 1,

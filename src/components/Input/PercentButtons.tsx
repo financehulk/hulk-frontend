@@ -22,17 +22,19 @@ const PercentButton = styled(Button)`
   height: unset;
 `
 
-const percents: number[] = [25,50,75,100]
-function PercentButtons({handleSelectPercent}: PercentButtonsProps) {
+const percents: number[] = [25, 50, 75, 100]
+function PercentButtons({ handleSelectPercent }: PercentButtonsProps) {
   return (
     <RowButtons>
-      {
-        percents.map((percent) => {
-          return <PercentButton key={percent} onClick={() => handleSelectPercent(percent)}>{percent}%</PercentButton>
-        })
-      }
+      {percents.map((percent) => {
+        return (
+          <PercentButton key={percent} onClick={() => handleSelectPercent(percent)}>
+            {percent}%
+          </PercentButton>
+        )
+      })}
     </RowButtons>
   )
 }
 
-export default PercentButtons;
+export default PercentButtons

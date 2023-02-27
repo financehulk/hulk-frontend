@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react'
 import { Button, ChevronDownIcon, ChevronUpIcon, IconButton } from '@hulkfinance/hulk-uikit'
 
 interface Props {
-  onClick?: () => void;
-  expanded?: boolean;
+  onClick?: () => void
+  expanded?: boolean
 }
 
 export const ExpandableButton: React.FC<Props> = ({ onClick, expanded, children }) => {
@@ -12,11 +12,11 @@ export const ExpandableButton: React.FC<Props> = ({ onClick, expanded, children 
       {children}
       {expanded ? <ChevronUpIcon color="invertedContrast" /> : <ChevronDownIcon color="invertedContrast" />}
     </IconButton>
-  );
-};
+  )
+}
 ExpandableButton.defaultProps = {
   expanded: false,
-};
+}
 
 export const ExpandableLabel: React.FC<Props> = ({ onClick, expanded, children }) => {
   return (
@@ -28,8 +28,8 @@ export const ExpandableLabel: React.FC<Props> = ({ onClick, expanded, children }
     >
       {children}
     </Button>
-  );
-};
+  )
+}
 ExpandableLabel.defaultProps = {
   expanded: false,
-};
+}

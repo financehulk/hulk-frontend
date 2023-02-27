@@ -136,7 +136,7 @@ export default function useHulkSwap() {
         return hulkPreContract
           .approve(getHULKSwapAddress(), MaxUint256, { from: account })
           .then((res: TransactionResponse) => {
-            console.log(res.hash)
+            //  console.log(res.hash)
 
             if (res?.hash) {
               toast.action = {

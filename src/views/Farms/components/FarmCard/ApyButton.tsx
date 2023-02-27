@@ -8,11 +8,11 @@ import RoiCalculatorModal from '../../../../components/RoiCalculatorModal'
 import { BIG_ZERO } from '../../../../utils/bigNumber'
 
 const ApyLabelContainer = styled(Flex)`
-  cursor: pointer; 
+  cursor: pointer;
 
   &:hover {
     opacity: 0.5;
-  } 
+  }
 `
 
 export interface ApyButtonProps {
@@ -28,16 +28,16 @@ export interface ApyButtonProps {
 }
 
 const ApyButton: React.FC<ApyButtonProps> = ({
-                                               variant,
-                                               pid,
-                                               lpLabel,
-                                               lpSymbol,
-                                               hulkPrice,
-                                               apr,
-                                               multiplier,
-                                               displayApr,
-                                               addLiquidityUrl,
-                                             }) => {
+  variant,
+  pid,
+  lpLabel,
+  lpSymbol,
+  hulkPrice,
+  apr,
+  multiplier,
+  displayApr,
+  addLiquidityUrl,
+}) => {
   const { t } = useTranslation()
   const lpPrice = useLpTokenPrice(lpSymbol)
   const farmUser = useFarmUser(pid)
@@ -52,7 +52,6 @@ const ApyButton: React.FC<ApyButtonProps> = ({
       tokenBalance: BIG_ZERO,
       stakedBalance: BIG_ZERO,
     }
-
   }, [farmUser])
   const [onPresentApyModal] = useModal(
     <RoiCalculatorModal
@@ -75,11 +74,11 @@ const ApyButton: React.FC<ApyButtonProps> = ({
   }
 
   return (
-    <ApyLabelContainer alignItems='center' onClick={handleClickButton}>
+    <ApyLabelContainer alignItems="center" onClick={handleClickButton}>
       {displayApr}%
       {variant === 'text-and-button' && (
-        <IconButton variant='text' ml='4px'>
-          <CalculateIcon width='18px' />
+        <IconButton variant="text" ml="4px">
+          <CalculateIcon width="18px" />
         </IconButton>
       )}
     </ApyLabelContainer>

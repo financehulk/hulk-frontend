@@ -10,9 +10,7 @@ import { ThemeContextProvider } from './contexts/ThemeContext'
 import { LanguageProvider } from './contexts/Localisation'
 
 const Providers: React.FC = ({ children }) => {
-
   return (
-
     <Web3ReactProvider getLibrary={getLibrary}>
       <Provider store={store}>
         <ToastProvider>
